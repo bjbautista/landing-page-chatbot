@@ -13,7 +13,20 @@ git init
 git add .
 ```
 - El area de preparacion es donde se preparan los cambios 
+# Paso 3
+- Registrar una descripcion del cambio realizado
+```
+git commit -m "proyecto base"
+```
 ------
-# EJEMPLO
+# Paso 4 (Github)
+-Crear el repositorio en Github y enlazar al proyecto
+```
+git remote add origin + URL
+```
+# Paso 5
 
-Actualizar el .env no se sube
+-subimos los cambios al repositorio
+```
+git push origin master
+```
