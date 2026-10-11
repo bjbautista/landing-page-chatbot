@@ -1,11 +1,399 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="theme-color" content="#101211">
+    <meta name="description" content="En Ruta Motors encuentras autos seleccionados, asesoría transparente y servicios para disfrutar cada kilómetro.">
+    <title>En Ruta Motors | Tu próximo auto comienza aquí</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            color-scheme: dark;
+            --ink: #f5f4ef;
+            --muted: #a4aaa5;
+            --surface: #171a18;
+            --surface-light: #202421;
+            --accent: #d8ff45;
+            --line: rgba(255, 255, 255, .12);
+            --page-width: 1200px;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+        body {
+            margin: 0;
+            background: #101211;
+            color: var(--ink);
+            font-family: "DM Sans", sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { display: block; width: 100%; object-fit: cover; }
+        .wrap { width: min(var(--page-width), calc(100% - 64px)); margin-inline: auto; }
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .17em;
+            text-transform: uppercase;
+        }
+        .eyebrow::before { width: 22px; height: 1px; background: currentColor; content: ""; }
+        h1, h2, h3, p { margin-top: 0; }
+        h1, h2, h3 { font-family: Manrope, sans-serif; }
+        .section { padding-block: 112px; }
+        .section-heading { max-width: 680px; margin-bottom: 44px; }
+        .section-heading h2 {
+            margin: 16px 0 14px;
+            font-size: clamp(34px, 5vw, 54px);
+            letter-spacing: -.055em;
+            line-height: 1.08;
+        }
+        .section-heading p { max-width: 540px; margin-bottom: 0; color: var(--muted); line-height: 1.8; }
+
+        .site-header {
+            position: sticky;
+            z-index: 10;
+            top: 0;
+            border-bottom: 1px solid rgba(255,255,255,.07);
+            background: rgba(16,18,17,.88);
+            backdrop-filter: blur(16px);
+        }
+        .nav { display: flex; min-height: 76px; align-items: center; justify-content: space-between; gap: 28px; }
+        .brand { display: inline-flex; align-items: center; gap: 11px; font-family: Manrope, sans-serif; font-size: 16px; font-weight: 800; letter-spacing: -.04em; }
+        .brand-mark {
+            display: grid;
+            width: 34px;
+            height: 34px;
+            place-items: center;
+            border-radius: 10px;
+            background: var(--accent);
+            color: #101211;
+            font-size: 17px;
+        }
+        .brand span:last-child span { color: var(--accent); }
+        .nav-links { display: flex; align-items: center; gap: 30px; color: #c4c9c4; font-size: 13px; }
+        .nav-links a:hover, .footer-links a:hover { color: var(--accent); }
+        .button {
+            display: inline-flex;
+            min-height: 48px;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 0 20px;
+            border: 1px solid var(--accent);
+            border-radius: 5px;
+            background: var(--accent);
+            color: #12150b;
+            font-size: 13px;
+            font-weight: 700;
+            transition: transform .2s ease, background .2s ease;
+        }
+        .button:hover { transform: translateY(-2px); background: #e5ff83; }
+        .button-outline { border-color: rgba(255,255,255,.28); background: transparent; color: var(--ink); }
+        .button-outline:hover { border-color: var(--accent); background: rgba(216,255,69,.08); }
+        .nav-cta { min-height: 40px; padding-inline: 15px; font-size: 12px; }
+
+        .hero {
+            position: relative;
+            display: flex;
+            min-height: min(720px, calc(100svh - 76px));
+            align-items: center;
+            overflow: hidden;
+            background: #151916;
+        }
+        .hero::before {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(13,16,14,.96) 0%, rgba(13,16,14,.78) 40%, rgba(13,16,14,.15) 100%),
+                linear-gradient(0deg, rgba(13,16,14,.55), transparent 45%),
+                url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=2200&q=85") center 56% / cover;
+            content: "";
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 720px; padding-block: 90px; }
+        .hero h1 { max-width: 690px; margin: 20px 0; font-size: clamp(48px, 8vw, 88px); letter-spacing: -.075em; line-height: .99; }
+        .hero h1 span { color: var(--accent); }
+        .hero-copy { max-width: 490px; margin-bottom: 30px; color: #c1c5c1; font-size: 16px; line-height: 1.8; }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+        .hero-note { display: flex; align-items: center; gap: 12px; margin-top: 52px; color: #d0d4cf; font-size: 12px; }
+        .hero-note strong { color: var(--accent); font-size: 20px; }
+        .hero-note span { max-width: 130px; color: var(--muted); line-height: 1.5; }
+
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 72px; }
+        .about-photo { position: relative; min-height: 480px; }
+        .about-photo img { height: 480px; border-radius: 8px; }
+        .photo-label {
+            position: absolute;
+            right: -20px;
+            bottom: 25px;
+            max-width: 210px;
+            padding: 18px 20px;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            background: #1b1f1c;
+            box-shadow: 0 15px 45px rgba(0,0,0,.3);
+        }
+        .photo-label strong { display: block; margin-bottom: 5px; color: var(--accent); font: 800 26px Manrope, sans-serif; }
+        .photo-label span { color: #c1c6c0; font-size: 12px; line-height: 1.5; }
+        .about-copy h2 { margin: 16px 0 18px; font-size: clamp(34px, 4.2vw, 50px); letter-spacing: -.055em; line-height: 1.1; }
+        .about-copy > p { color: var(--muted); line-height: 1.85; }
+        .values { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
+        .value { padding-top: 17px; border-top: 1px solid var(--line); }
+        .value strong { display: block; margin-bottom: 6px; font-size: 14px; }
+        .value p { margin-bottom: 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+
+        .gallery-section { background: var(--surface); }
+        .gallery-grid { display: grid; grid-template-columns: 1.25fr 1fr 1fr; grid-template-rows: 250px 220px; gap: 14px; }
+        .gallery-card { position: relative; min-height: 0; overflow: hidden; border-radius: 6px; background: #282c29; }
+        .gallery-card:first-child { grid-row: span 2; }
+        .gallery-card img { height: 100%; transition: transform .5s ease; }
+        .gallery-card:hover img { transform: scale(1.04); }
+        .gallery-card::after { position: absolute; inset: 35% 0 0; background: linear-gradient(transparent, rgba(0,0,0,.72)); content: ""; }
+        .gallery-caption { position: absolute; z-index: 1; right: 20px; bottom: 17px; left: 20px; }
+        .gallery-caption span { color: var(--accent); font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+        .gallery-caption h3 { margin: 6px 0 0; font-size: 17px; }
+
+        .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+        .service-card { min-height: 225px; padding: 25px 21px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); }
+        .service-icon {
+            display: grid;
+            width: 42px;
+            height: 42px;
+            margin-bottom: 27px;
+            place-items: center;
+            border: 1px solid rgba(216,255,69,.28);
+            border-radius: 5px;
+            color: var(--accent);
+            font-size: 20px;
+        }
+        .service-card h3 { margin-bottom: 9px; font-size: 16px; }
+        .service-card p { margin-bottom: 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
+
+        .contact-section { padding-bottom: 76px; background: var(--surface); }
+        .contact-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 48px; }
+        .contact-copy h2 { margin: 15px 0; font-size: clamp(36px, 4.5vw, 54px); letter-spacing: -.06em; line-height: 1.06; }
+        .contact-copy > p { max-width: 390px; color: var(--muted); line-height: 1.8; }
+        .contact-details { display: grid; gap: 19px; margin-top: 28px; }
+        .contact-item { display: grid; grid-template-columns: 36px 1fr; align-items: start; gap: 12px; }
+        .contact-item .service-icon { width: 34px; height: 34px; margin: 0; font-size: 15px; }
+        .contact-item small { display: block; margin-bottom: 4px; color: var(--muted); font-size: 11px; }
+        .contact-item a, .contact-item address { font-size: 13px; font-style: normal; line-height: 1.6; }
+        .socials { display: flex; gap: 9px; margin-top: 26px; }
+        .social-link { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: #e5e8e3; font-size: 12px; font-weight: 700; }
+        .social-link:hover { border-color: var(--accent); color: var(--accent); }
+        .map-frame { min-height: 440px; overflow: hidden; border: 1px solid var(--line); border-radius: 7px; background: #222723; }
+        .map-frame iframe { width: 100%; height: 100%; min-height: 440px; border: 0; filter: grayscale(1) invert(.88) contrast(.85); }
+
+        .site-footer { padding-block: 23px; border-top: 1px solid var(--line); background: #141715; }
+        .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+        .footer-inner p { margin: 0; color: var(--muted); font-size: 11px; }
+        .footer-links { display: flex; gap: 20px; color: #c0c5bf; font-size: 11px; }
+
+        @media (max-width: 900px) {
+            .section { padding-block: 82px; }
+            .nav-links { gap: 17px; }
+            .nav-cta { display: none; }
+            .about-grid { gap: 42px; }
+            .about-photo, .about-photo img { min-height: 400px; height: 400px; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .contact-grid { grid-template-columns: 1fr 1.1fr; gap: 28px; }
+            .gallery-grid { grid-template-rows: 210px 190px; }
+        }
+        @media (max-width: 640px) {
+            html { scroll-padding-top: 72px; }
+            .wrap { width: min(100% - 38px, var(--page-width)); }
+            .nav { min-height: 68px; flex-wrap: wrap; gap: 0; }
+            .brand { font-size: 14px; }
+            .brand-mark { width: 31px; height: 31px; }
+            .nav-links { width: 100%; justify-content: space-between; gap: 8px; padding: 0 0 13px; font-size: 11px; }
+            .hero { min-height: 650px; }
+            .hero::before { background-position: 61% center; }
+            .hero-content { padding-block: 75px; }
+            .hero h1 { font-size: clamp(48px, 14vw, 70px); }
+            .hero-copy { font-size: 14px; }
+            .hero-note { margin-top: 38px; }
+            .section { padding-block: 70px; }
+            .section-heading { margin-bottom: 30px; }
+            .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 36px; }
+            .about-photo { margin-right: 10px; }
+            .about-photo, .about-photo img { min-height: 350px; height: 350px; }
+            .photo-label { right: -10px; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 260px 170px 170px; gap: 10px; }
+            .gallery-card:first-child { grid-row: auto; grid-column: span 2; }
+            .gallery-caption { right: 12px; bottom: 12px; left: 12px; }
+            .gallery-caption h3 { font-size: 14px; }
+            .services-grid { gap: 10px; }
+            .service-card { min-height: 205px; padding: 19px 15px; }
+            .service-icon { margin-bottom: 21px; }
+            .map-frame, .map-frame iframe { min-height: 330px; }
+            .footer-inner { align-items: flex-start; flex-direction: column; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+        }
+    </style>
 </head>
 <body>
-    <h1>Bienvenido a Git y GitHub</h1>
+    <header class="site-header">
+        <nav class="nav wrap" aria-label="Navegación principal">
+            <a class="brand" href="#inicio" aria-label="En Ruta Motors, inicio">
+                <span class="brand-mark" aria-hidden="true">↗</span>
+                <span>EN RUTA <span>MOTORS</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="#nosotros">Nosotros</a>
+                <a href="#galeria">Galería</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+            <a class="button nav-cta" href="#contacto">Hablemos <span aria-hidden="true">↗</span></a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="inicio" aria-labelledby="hero-title">
+            <div class="wrap hero-content">
+                <span class="eyebrow">Tu camino empieza aquí</span>
+                <h1 id="hero-title">Encuentra el auto que <span>va contigo.</span></h1>
+                <p class="hero-copy">Autos seleccionados, asesoría honesta y todo lo que necesitas para salir a disfrutar tu próximo viaje.</p>
+                <div class="hero-actions">
+                    <a class="button" href="#galeria">Conoce nuestros autos <span aria-hidden="true">↗</span></a>
+                    <a class="button button-outline" href="#nosotros">Descubre quiénes somos</a>
+                </div>
+                <div class="hero-note">
+                    <strong>100%</strong>
+                    <span>acompañamiento en cada kilómetro</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="nosotros" aria-labelledby="about-title">
+            <div class="wrap about-grid">
+                <div class="about-photo">
+                    <img src="https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=1100&q=85" alt="Auto moderno estacionado frente a un paisaje montañoso" loading="lazy">
+                    <div class="photo-label"><strong>Tu próxima historia</strong><span>Empieza con la confianza de elegir bien.</span></div>
+                </div>
+                <div class="about-copy">
+                    <span class="eyebrow">Quiénes somos</span>
+                    <h2>Nos mueve encontrar tu próximo destino.</h2>
+                    <p>En En Ruta Motors creemos que elegir un auto debe sentirse tan bien como el primer viaje. Somos un equipo apasionado por los autos y comprometido con hacer de tu compra una experiencia clara, cercana y sin complicaciones.</p>
+                    <p>Escuchamos lo que necesitas, te mostramos opciones cuidadosamente seleccionadas y te acompañamos en cada paso, desde la primera visita hasta que tienes las llaves en tus manos.</p>
+                    <div class="values">
+                        <div class="value"><strong>Trato transparente</strong><p>Información clara para que decidas con confianza.</p></div>
+                        <div class="value"><strong>Atención cercana</strong><p>Personas reales, listas para ayudarte en cada etapa.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section gallery-section" id="galeria" aria-labelledby="gallery-title">
+            <div class="wrap">
+                <div class="section-heading">
+                    <span class="eyebrow">Galería</span>
+                    <h2 id="gallery-title">Un auto para cada aventura.</h2>
+                    <p>Conoce algunos de los estilos que podrían llevarte a tu próximo destino. Ven a verlos de cerca y encuentra el indicado para ti.</p>
+                </div>
+                <div class="gallery-grid">
+                    <article class="gallery-card">
+                        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=85" alt="Auto deportivo de diseño elegante" loading="lazy">
+                        <div class="gallery-caption"><span>Espíritu deportivo</span><h3>Diseño que inspira</h3></div>
+                    </article>
+                    <article class="gallery-card">
+                        <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=900&q=85" alt="Vehículo SUV listo para un viaje" loading="lazy">
+                        <div class="gallery-caption"><span>Listo para explorar</span><h3>Espacio para más</h3></div>
+                    </article>
+                    <article class="gallery-card">
+                        <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=85" alt="Auto deportivo moderno visto de frente" loading="lazy">
+                        <div class="gallery-caption"><span>Carácter único</span><h3>Hecho para destacar</h3></div>
+                    </article>
+                    <article class="gallery-card">
+                        <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=900&q=85" alt="Sedán moderno estacionado en la ciudad" loading="lazy">
+                        <div class="gallery-caption"><span>Tu día a día</span><h3>Comodidad en cada ruta</h3></div>
+                    </article>
+                    <article class="gallery-card">
+                        <img src="https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=900&q=85" alt="Automóvil clásico en una carretera abierta" loading="lazy">
+                        <div class="gallery-caption"><span>El camino te espera</span><h3>Más libertad, más viajes</h3></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="servicios" aria-labelledby="services-title">
+            <div class="wrap">
+                <div class="section-heading">
+                    <span class="eyebrow">Servicios adicionales</span>
+                    <h2 id="services-title">Todo para que disfrutes el camino.</h2>
+                    <p>Te acompañamos más allá de la compra para que estrenar sea sencillo y cada viaje empiece con tranquilidad.</p>
+                </div>
+                <div class="services-grid">
+                    <article class="service-card">
+                        <span class="service-icon" aria-hidden="true">↗</span>
+                        <h3>Opciones de financiamiento</h3>
+                        <p>Te ayudamos a conocer alternativas de pago que se adapten a tus planes.</p>
+                    </article>
+                    <article class="service-card">
+                        <span class="service-icon" aria-hidden="true">◇</span>
+                        <h3>Recibimos tu auto</h3>
+                        <p>Conversa con nuestro equipo sobre opciones para entregar tu vehículo actual.</p>
+                    </article>
+                    <article class="service-card">
+                        <span class="service-icon" aria-hidden="true">✓</span>
+                        <h3>Inspección y asesoría</h3>
+                        <p>Resolvemos tus dudas y te orientamos para que elijas con confianza.</p>
+                    </article>
+                    <article class="service-card">
+                        <span class="service-icon" aria-hidden="true">⌖</span>
+                        <h3>Acompañamiento cercano</h3>
+                        <p>Estamos contigo antes, durante y después de encontrar tu próximo auto.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section contact-section" id="contacto" aria-labelledby="contact-title">
+            <div class="wrap contact-grid">
+                <div class="contact-copy">
+                    <span class="eyebrow">Contáctanos</span>
+                    <h2 id="contact-title">Hablemos de tu próximo viaje.</h2>
+                    <p>¿Tienes una pregunta o quieres conocer nuestros autos? Escríbenos o ven a visitarnos. Nos encantará ayudarte.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <span class="service-icon" aria-hidden="true">⌖</span>
+                            <div><small>Visítanos</small><address>Av. Principal 123, Centro<br>Ciudad de México, México</address></div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="service-icon" aria-hidden="true">↗</span>
+                            <div><small>Llámanos</small><a href="tel:+525555550123">+52 55 5555 0123</a></div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="service-icon" aria-hidden="true">✉</span>
+                            <div><small>Escríbenos</small><a href="mailto:hola@enrutamotors.com">hola@enrutamotors.com</a></div>
+                        </div>
+                    </div>
+                    <div class="socials" aria-label="Redes sociales">
+                        <a class="social-link" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">ig</a>
+                        <a class="social-link" href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a>
+                        <a class="social-link" href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" aria-label="TikTok">tk</a>
+                    </div>
+                </div>
+                <div class="map-frame">
+                    <iframe title="Mapa de ubicación de En Ruta Motors en Ciudad de México" src="https://maps.google.com/maps?q=Centro%20Historico%2C%20Ciudad%20de%20Mexico&t=&z=14&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap footer-inner">
+            <a class="brand" href="#inicio"><span class="brand-mark" aria-hidden="true">↗</span><span>EN RUTA <span>MOTORS</span></span></a>
+            <p>© 2026 En Ruta Motors. Tu camino, a tu manera.</p>
+            <div class="footer-links"><a href="#nosotros">Nosotros</a><a href="#servicios">Servicios</a><a href="#contacto">Contacto</a></div>
+        </div>
+    </footer>
 </body>
 </html>
