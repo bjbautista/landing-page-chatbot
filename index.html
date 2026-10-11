@@ -6,6 +6,7 @@
     <meta name="theme-color" content="#101211">
     <meta name="description" content="En Ruta Motors encuentras autos seleccionados, asesoría transparente y servicios para disfrutar cada kilómetro.">
     <title>En Ruta Motors | Tu próximo auto comienza aquí</title>
+    <link rel="icon" type="image/svg+xml" href="route-mark.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -68,14 +69,12 @@
         .brand { display: inline-flex; align-items: center; gap: 11px; font-family: Manrope, sans-serif; font-size: 16px; font-weight: 800; letter-spacing: -.04em; }
         .brand-mark {
             display: grid;
-            width: 34px;
-            height: 34px;
+            width: 38px;
+            height: 38px;
             place-items: center;
-            border-radius: 10px;
-            background: var(--accent);
-            color: #101211;
-            font-size: 17px;
+            background: transparent;
         }
+        .brand-mark img { width: 38px; height: 38px; object-fit: contain; }
         .brand span:last-child span { color: var(--accent); }
         .nav-links { display: flex; align-items: center; gap: 30px; color: #c4c9c4; font-size: 13px; }
         .nav-links a:hover, .footer-links a:hover { color: var(--accent); }
@@ -209,7 +208,7 @@
             .wrap { width: min(100% - 38px, var(--page-width)); }
             .nav { min-height: 68px; flex-wrap: wrap; gap: 0; }
             .brand { font-size: 14px; }
-            .brand-mark { width: 31px; height: 31px; }
+            .brand-mark, .brand-mark img { width: 34px; height: 34px; }
             .nav-links { width: 100%; justify-content: space-between; gap: 8px; padding: 0 0 13px; font-size: 11px; }
             .hero { min-height: 650px; }
             .hero::before { background-position: 61% center; }
@@ -242,7 +241,7 @@
     <header class="site-header">
         <nav class="nav wrap" aria-label="Navegación principal">
             <a class="brand" href="#inicio" aria-label="En Ruta Motors, inicio">
-                <span class="brand-mark" aria-hidden="true">↗</span>
+                <span class="brand-mark" aria-hidden="true"><img src="route-mark.svg" alt=""></span>
                 <span>EN RUTA <span>MOTORS</span></span>
             </a>
             <div class="nav-links">
@@ -390,7 +389,7 @@
 
     <footer class="site-footer">
         <div class="wrap footer-inner">
-            <a class="brand" href="#inicio"><span class="brand-mark" aria-hidden="true">↗</span><span>EN RUTA <span>MOTORS</span></span></a>
+            <a class="brand" href="#inicio"><span class="brand-mark" aria-hidden="true"><img src="route-mark.svg" alt=""></span><span>EN RUTA <span>MOTORS</span></span></a>
             <p>© 2026 En Ruta Motors. Tu camino, a tu manera.</p>
             <div class="footer-links"><a href="#nosotros">Nosotros</a><a href="#servicios">Servicios</a><a href="#contacto">Contacto</a></div>
         </div>
